@@ -965,6 +965,9 @@ if new [=requests=] can be made against the transaction. A
 transaction is said to be <dfn>active</dfn> if its [=transaction/active flag=]
 is set.
 
+A [=/transaction=] optionally has a <dfn>cleanup event loop</dfn>
+which is an [=event loop=].
+
 A [=/transaction=] has a <dfn>request list</dfn> of [=requests=]
 which have been made against the transaction.
 
@@ -1142,6 +1145,25 @@ The following constraints define when a [=/transaction=] can be
     <a>read/write transaction</a> from [=transaction/starting=].
 
 </div>
+
+To <dfn export>cleanup transactions</dfn> for an [=event loop=], run
+the following steps:
+
+<div class=algorithm>
+    1. For each |transaction| with a matching
+        [=transaction/cleanup event loop=], run the following substeps:
+
+        1. Unset |transaction|'s [=transaction/active flag=].
+
+        2. Clear |transaction|'s [=transaction/cleanup event loop=].
+</div>
+
+<aside class=note>
+  This behavior is invoked by [[HTML]]. It ensures that transactions
+  created by a script call to {{IDBDatabase/transaction()}} are
+  deactivated once the task that invoked the script has completed.
+</aside>
+
 
 <!-- ============================================================ -->
 <h4 id=upgrade-transaction-construct>Upgrade Transactions</h4>
@@ -2524,8 +2546,8 @@ The <dfn method for=IDBDatabase>transaction(|storeNames|,
     |connection|, |mode| and the set of [=/object stores=] named in
     |scope|.
 
-8. When control is returned to the [=event loop=], the implementation must
-    unset the [=transaction/active flag=].
+8. Set |transaction|'s [=transaction/cleanup event loop=] to the
+    relevant [=event loop=].
 
 9. Return an {{IDBTransaction}} object representing |transaction|.
 
