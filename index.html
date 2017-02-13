@@ -1455,7 +1455,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Indexed Database API 2.0</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-02-07">7 February 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2017-02-13">13 February 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -3553,8 +3553,14 @@ exceptions.</p>
        <li data-md="">
         <p>If <var>kpk</var> is not failure, let <var>key</var> be <var>kpk</var>.</p>
        <li data-md="">
-        <p>Otherwise, if <var>store</var> does not have a <a data-link-type="dfn" href="#key-generator" id="ref-for-key-generator-16">key
-generator</a>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dataerror">DataError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>.</p>
+        <p>Otherwise (<var>kpk</var> is failure), run these substeps:</p>
+        <ol>
+         <li data-md="">
+          <p>If <var>store</var> does not have a <a data-link-type="dfn" href="#key-generator" id="ref-for-key-generator-16">key generator</a>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dataerror">DataError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>.</p>
+         <li data-md="">
+          <p>Otherwise, if the steps to <a data-link-type="dfn" href="#check-that-a-key-could-be-injected-into-a-value" id="ref-for-check-that-a-key-could-be-injected-into-a-value-1">check that a key could be injected into a value</a> with <var>clone</var> and <var>store</var>’s <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-15">key path</a> return
+false, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dataerror">DataError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>.</p>
+        </ol>
       </ol>
      <li data-md="">
       <p>Run the <a data-link-type="dfn" href="#steps-for-asynchronously-executing-a-request" id="ref-for-steps-for-asynchronously-executing-a-request-2">steps for asynchronously executing a request</a> and
@@ -3606,15 +3612,21 @@ Rethrow any exceptions.</p>
       <ol>
        <li data-md="">
         <p>Let <var>kpk</var> be the result of running the steps to <a data-link-type="dfn" href="#extract-a-key-from-a-value-using-a-key-path" id="ref-for-extract-a-key-from-a-value-using-a-key-path-3">extract a
-key from a value using a key path</a> with <var>clone</var> and <var>store</var>’s <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-15">key path</a>. Rethrow any
+key from a value using a key path</a> with <var>clone</var> and <var>store</var>’s <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-16">key path</a>. Rethrow any
 exceptions.</p>
        <li data-md="">
         <p>If <var>kpk</var> is invalid, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dataerror">DataError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>.</p>
        <li data-md="">
         <p>If <var>kpk</var> is not failure, let <var>key</var> be <var>kpk</var>.</p>
        <li data-md="">
-        <p>Otherwise, if <var>store</var> does not have a <a data-link-type="dfn" href="#key-generator" id="ref-for-key-generator-18">key
-generator</a>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dataerror">DataError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>.</p>
+        <p>Otherwise (<var>kpk</var> is failure), run these substeps:</p>
+        <ol>
+         <li data-md="">
+          <p>If <var>store</var> does not have a <a data-link-type="dfn" href="#key-generator" id="ref-for-key-generator-18">key generator</a>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dataerror">DataError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>.</p>
+         <li data-md="">
+          <p>Otherwise, if the steps to <a data-link-type="dfn" href="#check-that-a-key-could-be-injected-into-a-value" id="ref-for-check-that-a-key-could-be-injected-into-a-value-2">check that a key could be injected into a value</a> with <var>clone</var> and <var>store</var>’s <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-17">key path</a> return
+false, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dataerror">DataError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>.</p>
+        </ol>
       </ol>
      <li data-md="">
       <p>Run the <a data-link-type="dfn" href="#steps-for-asynchronously-executing-a-request" id="ref-for-steps-for-asynchronously-executing-a-request-3">steps for asynchronously executing a request</a> and
@@ -4169,7 +4181,7 @@ store</a>, <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-th
 must return this <a data-link-type="dfn" href="#index-handle" id="ref-for-index-handle-13">index handle</a>'s <a data-link-type="dfn" href="#index-handle-object-store-handle" id="ref-for-index-handle-object-store-handle-1">object
 store handle</a>.</p>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="IDBIndex" data-dfn-type="attribute" data-export="" id="dom-idbindex-keypath">keyPath</dfn> attribute’s getter must
-return this <a data-link-type="dfn" href="#index-handle" id="ref-for-index-handle-14">index handle</a>'s <a data-link-type="dfn" href="#index-handle-index" id="ref-for-index-handle-index-3">index</a>'s <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-16">key path</a>.</p>
+return this <a data-link-type="dfn" href="#index-handle" id="ref-for-index-handle-14">index handle</a>'s <a data-link-type="dfn" href="#index-handle-index" id="ref-for-index-handle-index-3">index</a>'s <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-18">key path</a>.</p>
    <p>The conversion is done following the normal <a data-link-type="biblio" href="#biblio-webidl">[WEBIDL]</a> binding logic
 for <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a></code> and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence">sequence&lt;DOMString></a> values, as
 appropriate.</p>
@@ -4848,7 +4860,7 @@ Rethrow any exceptions.</p>
 keys</a>, run these substeps:</p>
       <ol>
        <li data-md="">
-        <p>Let <var>kpk</var> be the result of running the steps to <a data-link-type="dfn" href="#extract-a-key-from-a-value-using-a-key-path" id="ref-for-extract-a-key-from-a-value-using-a-key-path-4">extract a key from a value using a key path</a> with <var>clone</var> and the <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-17">key
+        <p>Let <var>kpk</var> be the result of running the steps to <a data-link-type="dfn" href="#extract-a-key-from-a-value-using-a-key-path" id="ref-for-extract-a-key-from-a-value-using-a-key-path-4">extract a key from a value using a key path</a> with <var>clone</var> and the <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-19">key
 path</a> of the <a data-link-type="dfn" href="#cursor-effective-object-store" id="ref-for-cursor-effective-object-store-8">effective object store</a>.
 Rethrow any exceptions.</p>
        <li data-md="">
@@ -5479,17 +5491,6 @@ follows.</p>
    <div class="algorithm">
     <ol>
      <li data-md="">
-      <p>If <var>store</var> uses <a data-link-type="dfn" href="#object-store-in-line-keys" id="ref-for-object-store-in-line-keys-9">in-line keys</a>, run these substeps:</p>
-      <ol>
-       <li data-md="">
-        <p>Let <var>kpk</var> be the result of running the steps to <a data-link-type="dfn" href="#extract-a-key-from-a-value-using-a-key-path" id="ref-for-extract-a-key-from-a-value-using-a-key-path-5">extract a
-key from a value using a key path</a> with <var>value</var> and <var>store</var>’s <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-18">key path</a>.</p>
-       <li data-md="">
-        <p class="assertion">Assert: <var>kpk</var> will not be invalid or an exception.</p>
-       <li data-md="">
-        <p>If <var>kpk</var> is not failure, let <var>key</var> be <var>kpk</var>.</p>
-      </ol>
-     <li data-md="">
       <p>If <var>store</var> uses a <a data-link-type="dfn" href="#key-generator" id="ref-for-key-generator-19">key generator</a>, run these substeps:</p>
       <ol>
        <li data-md="">
@@ -5505,8 +5506,8 @@ algorithm without taking any further steps.</p>
          <li data-md="">
           <p>Increase the <a data-link-type="dfn" href="#key-generator" id="ref-for-key-generator-22">key generator</a>'s <a data-link-type="dfn" href="#current-number" id="ref-for-current-number-21">current number</a> by 1.</p>
          <li data-md="">
-          <p>If <var>store</var> also uses <a data-link-type="dfn" href="#object-store-in-line-keys" id="ref-for-object-store-in-line-keys-10">in-line keys</a>, then run the
-steps to <a data-link-type="dfn" href="#inject-a-key-into-a-value-using-a-key-path" id="ref-for-inject-a-key-into-a-value-using-a-key-path-1">inject a key into a value using a key path</a> with <var>value</var>, <var>key</var> and <var>store</var>’s <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-19">key
+          <p>If <var>store</var> also uses <a data-link-type="dfn" href="#object-store-in-line-keys" id="ref-for-object-store-in-line-keys-9">in-line keys</a>, then run the
+steps to <a data-link-type="dfn" href="#inject-a-key-into-a-value-using-a-key-path" id="ref-for-inject-a-key-into-a-value-using-a-key-path-1">inject a key into a value using a key path</a> with <var>value</var>, <var>key</var> and <var>store</var>’s <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-20">key
 path</a>.</p>
         </ol>
        <li data-md="">
@@ -5521,12 +5522,12 @@ Abort this algorithm without taking any further steps.</p>
 to</a> <var>key</var>, then remove the <a data-link-type="dfn" href="#object-store-record" id="ref-for-object-store-record-79">record</a> from <var>store</var> using the <a data-link-type="dfn" href="#steps-for-deleting-records-from-an-object-store" id="ref-for-steps-for-deleting-records-from-an-object-store-3">steps for deleting records from an object store</a>.</p>
      <li data-md="">
       <p>Store a record in <var>store</var> containing <var>key</var> as its key and <var>value</var> as its value. The record is stored in the object store’s <a data-link-type="dfn" href="#object-store-list-of-records" id="ref-for-object-store-list-of-records-1">list of records</a> such that the list is sorted
-according key of the records in ascending order.</p>
+according to the key of the records in ascending order.</p>
      <li data-md="">
       <p>For each <var>index</var> which <a data-link-type="dfn" href="#index-referenced" id="ref-for-index-referenced-9">reference</a> <var>store</var>, run these substeps:</p>
       <ol>
        <li data-md="">
-        <p>Let <var>index key</var> be the result of running the steps to <a data-link-type="dfn" href="#extract-a-key-from-a-value-using-a-key-path" id="ref-for-extract-a-key-from-a-value-using-a-key-path-6">extract a key from a value using a key path</a> with <var>value</var>, <var>index</var>’s <a data-link-type="dfn" href="#index-key-path" id="ref-for-index-key-path-5">key path</a>, and <var>index</var>’s <a data-link-type="dfn" href="#index-multientry-flag" id="ref-for-index-multientry-flag-6">multiEntry flag</a>.</p>
+        <p>Let <var>index key</var> be the result of running the steps to <a data-link-type="dfn" href="#extract-a-key-from-a-value-using-a-key-path" id="ref-for-extract-a-key-from-a-value-using-a-key-path-5">extract a key from a value using a key path</a> with <var>value</var>, <var>index</var>’s <a data-link-type="dfn" href="#index-key-path" id="ref-for-index-key-path-5">key path</a>, and <var>index</var>’s <a data-link-type="dfn" href="#index-multientry-flag" id="ref-for-index-multientry-flag-6">multiEntry flag</a>.</p>
        <li data-md="">
         <p>If <var>index key</var> is an exception, or invalid, or failure, take no
 further actions for this index, and continue these substeps
@@ -5937,7 +5938,7 @@ expression <code>[]</code>.</p>
         <p>For each <var>item</var> in the <var>keyPath</var> sequence, run these substeps:</p>
         <ol>
          <li data-md="">
-          <p>Let <var>key</var> be the result of recursively running the steps to <a data-link-type="dfn" href="#extract-a-key-from-a-value-using-a-key-path" id="ref-for-extract-a-key-from-a-value-using-a-key-path-7">extract a key from a value using a key path</a> using <var>item</var> as <var>keyPath</var> and <var>value</var> as <var>value</var>.</p>
+          <p>Let <var>key</var> be the result of recursively running the steps to <a data-link-type="dfn" href="#extract-a-key-from-a-value-using-a-key-path" id="ref-for-extract-a-key-from-a-value-using-a-key-path-6">extract a key from a value using a key path</a> using <var>item</var> as <var>keyPath</var> and <var>value</var> as <var>value</var>.</p>
          <li data-md="">
           <p class="assertion">Assert: <var>key</var> is not an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-completion-record-specification-type">abrupt completion</a>.</p>
          <li data-md="">
@@ -6004,6 +6005,39 @@ remaining steps.</p>
    <aside class="note"> Assertions can be made in the above steps because this algorithm is
   only applied to values that are the output of <a data-link-type="abstract-op" href="https://html.spec.whatwg.org/multipage/infrastructure.html#structuredclone">StructuredClone</a> and only access "own" properties. </aside>
    <h3 class="heading settled" data-level="7.2" id="inject-key-into-value"><span class="secno">7.2. </span><span class="content">Inject a key into a value</span><a class="self-link" href="#inject-key-into-value"></a></h3>
+   <aside class="note"> The <a data-link-type="dfn" href="#key-path" id="ref-for-key-path-5">key paths</a> used in this section are always strings and never
+  sequences, since it is not possible to create a <a data-link-type="dfn" href="#object-store" id="ref-for-object-store-104">object store</a> which has a <a data-link-type="dfn" href="#key-generator" id="ref-for-key-generator-24">key generator</a> and also has a <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-21">key path</a> that is a
+  sequence. </aside>
+   <p>The steps to <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="check-that-a-key-could-be-injected-into-a-value">check that a key could be injected into a value</dfn> are
+as follows. The algorithm takes a <var>value</var> and a <var>keyPath</var>, and outputs
+true or false.</p>
+   <div class="algorithm">
+    <ol>
+     <li data-md="">
+      <p>Let <var>identifiers</var> be the result of <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#strictly-split-a-string">strictly splitting</a> <var>keyPath</var> on U+002E FULL STOP characters (.).</p>
+     <li data-md="">
+      <p class="assertion">Assert: <var>identifiers</var> is not empty.</p>
+     <li data-md="">
+      <p>Remove the last member of <var>identifiers</var>.</p>
+     <li data-md="">
+      <p>For each remaining <var>identifier</var> in <var>identifiers</var>, if any, run these
+substeps:</p>
+      <ol>
+       <li data-md="">
+        <p>If <var>value</var> is not an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-object-objects">Object</a> or an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-array-objects">Array</a>, return false.</p>
+       <li data-md="">
+        <p>Let <var>hop</var> be <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">!</a> <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-hasownproperty">HasOwnProperty</a>(<var>value</var>, <var>identifier</var>).</p>
+       <li data-md="">
+        <p>If <var>hop</var> is false, return true.</p>
+       <li data-md="">
+        <p>Let <var>value</var> be <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">!</a> <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a>(<var>value</var>, <var>identifier</var>).</p>
+      </ol>
+     <li data-md="">
+      <p>Return true if <var>value</var> is an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-object-objects">Object</a> or an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-array-objects">Array</a>, or false otherwise.</p>
+    </ol>
+   </div>
+   <aside class="note"> Assertions can be made in the above steps because this algorithm is
+  only applied to values that are the output of <a data-link-type="abstract-op" href="https://html.spec.whatwg.org/multipage/infrastructure.html#structuredclone">StructuredClone</a>. </aside>
    <p>The steps to <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="inject-a-key-into-a-value-using-a-key-path">inject a key into a value using a key path</dfn> are
 as follows. The algorithm takes a <var>value</var>, a <var>key</var> and a <var>keyPath</var>.</p>
    <div class="algorithm">
@@ -6020,7 +6054,7 @@ the list.</p>
 substeps:</p>
       <ol>
        <li data-md="">
-        <p>If <var>value</var> is not an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-object-objects">Object</a> object or an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-array-objects">Array</a> object, then <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw">throw</a> a "<code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dataerror">DataError</a></code>" <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#dfn-DOMException">DOMException</a></code>.</p>
+        <p class="assertion">Assert: <var>value</var> is an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-object-objects">Object</a> or an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-array-objects">Array</a>.</p>
        <li data-md="">
         <p>Let <var>hop</var> be <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">!</a> <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-hasownproperty">HasOwnProperty</a>(<var>value</var>, <var>identifier</var>).</p>
        <li data-md="">
@@ -6041,18 +6075,17 @@ expression <code>({})</code>.</p>
       <p class="assertion">Assert: <var>value</var> is an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-object-objects">Object</a> or an <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-array-objects">Array</a>.</p>
      <li data-md="">
       <p>Let <var>keyValue</var> be the result of running the steps to <a data-link-type="dfn" href="#convert-a-key-to-a-value" id="ref-for-convert-a-key-to-a-value-9">convert a
-key to a value</a>.</p>
+key to a value</a> with <var>key</var>.</p>
      <li data-md="">
       <p>Let <var>status</var> be <a data-link-type="dfn" href="https://tc39.github.io/ecma262/#sec-createdataproperty">CreateDataProperty</a>(<var>value</var>, <var>last</var>, <var>keyValue</var>).</p>
      <li data-md="">
       <p class="assertion">Assert: <var>status</var> is true.</p>
     </ol>
    </div>
-   <aside class="note"> The <a data-link-type="dfn" href="#key-path" id="ref-for-key-path-5">key path</a> used here is always a string and never a sequence,
-  since it is not possible to create a <a data-link-type="dfn" href="#object-store" id="ref-for-object-store-104">object store</a> which has a <a data-link-type="dfn" href="#key-generator" id="ref-for-key-generator-24">key generator</a> and also has a <a data-link-type="dfn" href="#object-store-key-path" id="ref-for-object-store-key-path-20">key path</a> that is a
-  sequence. </aside>
    <aside class="note"> Assertions can be made in the above steps because this algorithm is
-  only applied to values that are the output of <a data-link-type="abstract-op" href="https://html.spec.whatwg.org/multipage/infrastructure.html#structuredclone">StructuredClone</a>. </aside>
+  only applied to values that are the output of <a data-link-type="abstract-op" href="https://html.spec.whatwg.org/multipage/infrastructure.html#structuredclone">StructuredClone</a>,
+  and the steps to <a data-link-type="dfn" href="#check-that-a-key-could-be-injected-into-a-value" id="ref-for-check-that-a-key-could-be-injected-into-a-value-3">check that a key could be injected into a value</a> have
+  been run. </aside>
    <h3 class="heading settled" data-level="7.3" id="convert-key-to-value"><span class="secno">7.3. </span><span class="content">Convert a key to a value</span><a class="self-link" href="#convert-key-to-value"></a></h3>
    <p>The steps to <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="convert-a-key-to-a-value">convert a key to a value</dfn> are as follows. These
 steps take one argument, <var>key</var>, and return an ECMAScript value.</p>
@@ -6554,6 +6587,7 @@ specification.</p>
    <li><a href="#dom-idbkeyrange-bound">bound(lower, upper)</a><span>, in §4.7</span>
    <li><a href="#dom-idbkeyrange-bound">bound(lower, upper, lowerOpen)</a><span>, in §4.7</span>
    <li><a href="#dom-idbkeyrange-bound">bound(lower, upper, lowerOpen, upperOpen)</a><span>, in §4.7</span>
+   <li><a href="#check-that-a-key-could-be-injected-into-a-value">check that a key could be injected into a value</a><span>, in §7.2</span>
    <li><a href="#dom-idbobjectstore-clear">clear()</a><span>, in §4.5</span>
    <li><a href="#dom-idbdatabase-close">close()</a><span>, in §4.4</span>
    <li><a href="#connection-closed">closed</a><span>, in §2.1.1</span>
@@ -7520,11 +7554,11 @@ specification.</p>
     <li><a href="#ref-for-object-store-key-path-1">2.2. Object Store</a>
     <li><a href="#ref-for-object-store-key-path-2">2.11. Key Generators</a> <a href="#ref-for-object-store-key-path-3">(2)</a> <a href="#ref-for-object-store-key-path-4">(3)</a> <a href="#ref-for-object-store-key-path-5">(4)</a> <a href="#ref-for-object-store-key-path-6">(5)</a> <a href="#ref-for-object-store-key-path-7">(6)</a> <a href="#ref-for-object-store-key-path-8">(7)</a> <a href="#ref-for-object-store-key-path-9">(8)</a> <a href="#ref-for-object-store-key-path-10">(9)</a>
     <li><a href="#ref-for-object-store-key-path-11">4.4. The IDBDatabase interface</a>
-    <li><a href="#ref-for-object-store-key-path-12">4.5. The IDBObjectStore interface</a> <a href="#ref-for-object-store-key-path-13">(2)</a> <a href="#ref-for-object-store-key-path-14">(3)</a> <a href="#ref-for-object-store-key-path-15">(4)</a>
-    <li><a href="#ref-for-object-store-key-path-16">4.6. The IDBIndex interface</a>
-    <li><a href="#ref-for-object-store-key-path-17">4.8. The IDBCursor interface</a>
-    <li><a href="#ref-for-object-store-key-path-18">6.1. Object Store Storage Operation</a> <a href="#ref-for-object-store-key-path-19">(2)</a>
-    <li><a href="#ref-for-object-store-key-path-20">7.2. Inject a key into a value</a>
+    <li><a href="#ref-for-object-store-key-path-12">4.5. The IDBObjectStore interface</a> <a href="#ref-for-object-store-key-path-13">(2)</a> <a href="#ref-for-object-store-key-path-14">(3)</a> <a href="#ref-for-object-store-key-path-15">(4)</a> <a href="#ref-for-object-store-key-path-16">(5)</a> <a href="#ref-for-object-store-key-path-17">(6)</a>
+    <li><a href="#ref-for-object-store-key-path-18">4.6. The IDBIndex interface</a>
+    <li><a href="#ref-for-object-store-key-path-19">4.8. The IDBCursor interface</a>
+    <li><a href="#ref-for-object-store-key-path-20">6.1. Object Store Storage Operation</a>
+    <li><a href="#ref-for-object-store-key-path-21">7.2. Inject a key into a value</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="object-store-in-line-keys">
@@ -7533,7 +7567,7 @@ specification.</p>
     <li><a href="#ref-for-object-store-in-line-keys-1">2.11. Key Generators</a>
     <li><a href="#ref-for-object-store-in-line-keys-2">4.5. The IDBObjectStore interface</a> <a href="#ref-for-object-store-in-line-keys-3">(2)</a> <a href="#ref-for-object-store-in-line-keys-4">(3)</a> <a href="#ref-for-object-store-in-line-keys-5">(4)</a> <a href="#ref-for-object-store-in-line-keys-6">(5)</a>
     <li><a href="#ref-for-object-store-in-line-keys-7">4.8. The IDBCursor interface</a> <a href="#ref-for-object-store-in-line-keys-8">(2)</a>
-    <li><a href="#ref-for-object-store-in-line-keys-9">6.1. Object Store Storage Operation</a> <a href="#ref-for-object-store-in-line-keys-10">(2)</a>
+    <li><a href="#ref-for-object-store-in-line-keys-9">6.1. Object Store Storage Operation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="object-store-out-of-line-keys">
@@ -9317,14 +9351,21 @@ specification.</p>
     <li><a href="#ref-for-extract-a-key-from-a-value-using-a-key-path-1">2.6. Index</a>
     <li><a href="#ref-for-extract-a-key-from-a-value-using-a-key-path-2">4.5. The IDBObjectStore interface</a> <a href="#ref-for-extract-a-key-from-a-value-using-a-key-path-3">(2)</a>
     <li><a href="#ref-for-extract-a-key-from-a-value-using-a-key-path-4">4.8. The IDBCursor interface</a>
-    <li><a href="#ref-for-extract-a-key-from-a-value-using-a-key-path-5">6.1. Object Store Storage Operation</a> <a href="#ref-for-extract-a-key-from-a-value-using-a-key-path-6">(2)</a>
-    <li><a href="#ref-for-extract-a-key-from-a-value-using-a-key-path-7">7.1. Extract a key from a value</a>
+    <li><a href="#ref-for-extract-a-key-from-a-value-using-a-key-path-5">6.1. Object Store Storage Operation</a>
+    <li><a href="#ref-for-extract-a-key-from-a-value-using-a-key-path-6">7.1. Extract a key from a value</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="evaluate-a-key-path-on-a-value">
    <b><a href="#evaluate-a-key-path-on-a-value">#evaluate-a-key-path-on-a-value</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-evaluate-a-key-path-on-a-value-1">7.1. Extract a key from a value</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="check-that-a-key-could-be-injected-into-a-value">
+   <b><a href="#check-that-a-key-could-be-injected-into-a-value">#check-that-a-key-could-be-injected-into-a-value</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-check-that-a-key-could-be-injected-into-a-value-1">4.5. The IDBObjectStore interface</a> <a href="#ref-for-check-that-a-key-could-be-injected-into-a-value-2">(2)</a>
+    <li><a href="#ref-for-check-that-a-key-could-be-injected-into-a-value-3">7.2. Inject a key into a value</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="inject-a-key-into-a-value-using-a-key-path">
