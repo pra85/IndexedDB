@@ -1146,22 +1146,22 @@ The following constraints define when a [=/transaction=] can be
 
 </div>
 
-To <dfn export>cleanup transactions</dfn> for an [=event loop=], run
-the following steps:
+To <dfn export>cleanup Indexed Database transactions</dfn> for an
+[=event loop=], run the following steps for each [=/transaction=]
+with a matching [=transaction/cleanup event loop=]:
 
 <div class=algorithm>
-    1. For each |transaction| with a matching
-        [=transaction/cleanup event loop=], run the following substeps:
+    1. Unset the [=/transaction=]'s [=transaction/active flag=].
 
-        1. Unset |transaction|'s [=transaction/active flag=].
-
-        2. Clear |transaction|'s [=transaction/cleanup event loop=].
+    2. Clear the [=/transaction=]'s [=transaction/cleanup event loop=].
 </div>
 
 <aside class=note>
-  This behavior is invoked by [[HTML]]. It ensures that transactions
-  created by a script call to {{IDBDatabase/transaction()}} are
-  deactivated once the task that invoked the script has completed.
+  This behavior is invoked by [[HTML]]. It ensures that
+  [=/transactions=] created by a script call
+  to{{IDBDatabase/transaction()}} are deactivated once the task that
+  invoked the script has completed. The steps are run at most once for
+  each [=/transaction=].
 </aside>
 
 
